@@ -9,7 +9,7 @@ pipeline {
        stage('continuous-build'){
         steps{
             sh 'sudo apt install maven git -y'
-            sh 'mvn package'
+            sh 'clean package'
         }
        }
     }
