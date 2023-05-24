@@ -8,7 +8,7 @@ pipeline {
         }
        stage('continuous-build'){
         steps{
-            sh 'sudo apt install maven -y'
+            sh 'sudo apt install maven git -y'
             sh 'mvn package'
         }
        }
