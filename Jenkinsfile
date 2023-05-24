@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('continu-download'){
             steps{
-                git 'https://github.com/venu162/springpet-project-k.git'
+                git 'https://github.com/spring-projects/spring-petclinic.git'
             }
         }
     }
