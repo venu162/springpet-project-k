@@ -1,10 +1,16 @@
 pipeline {
     agent any
     stages{
-        stage('continu-download'){
+        stage('continuous-download'){
             steps{
                 git 'https://github.com/spring-projects/spring-petclinic.git'
             }
         }
+       stage('continuous-build'){
+        steps{
+            sh 'sudo apt install maven -y'
+            sh 'mvn package'
+        }
+       }
     }
 }
