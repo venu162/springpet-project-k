@@ -13,5 +13,10 @@ pipeline {
               sh 'mvn package'
             }
         }
+        stage('continuous-deplyoment'){
+            steps{
+              archiveArtifacts artifacts: '**\*.war'
+            }
+        }
     }
 }
