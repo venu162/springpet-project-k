@@ -1,6 +1,6 @@
 pipeline {
     agent any
-     parameters { string(name: 'continuous-download','continuous-build',description: 'stages_names')
+     parameters {
      choice(name: 'BRANCH', choices: ['master'], description: 'branch_name')
       }
     triggers {
@@ -9,7 +9,6 @@ pipeline {
     stages{
         stage('continuous-download'){
             steps{
-                echo "hello: ${params.name}"
                 git 'https://github.com/spring-projects/spring-petclinic.git'
                 echo "choice: ${params.BRANCH}"
             }
