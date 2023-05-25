@@ -8,6 +8,7 @@ pipeline {
         }
        stage('continuous-build'){
             steps{
+              sh 'sudo apt install openjdk-17-jdk -y'
               sh 'sudo apt install maven -y'
               sh 'mvn package'
             }
