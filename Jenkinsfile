@@ -15,7 +15,12 @@ pipeline {
         }
         stage('continuous-deplyoment'){
             steps{
-              archiveArtifacts artifacts: '**\*.war'
+              archiveArtifacts artifacts: '**\*.war', followSymlinks: false
+            }
+        }
+        stage('continuous-testing'){
+            steps{
+                copyArtifacts fingerprintArtifacts: true, projectName: 'qtdevops', selector: lastSuccessful(), target: '/var/lib/jenkins/workspace/qtdevops/target/spring-petclinic-3.0.0-SNAPSHOT.jar'
             }
         }
     }
