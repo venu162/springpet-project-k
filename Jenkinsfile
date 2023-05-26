@@ -20,5 +20,20 @@ pipeline {
               sh 'mvn package'
             }
         }
+        stage('artifactory-config'){
+            steps{
+               rtServer(
+                   id: "JFROG-qtdevo",
+                   url: "https://qtdevo.jfrog.io/",
+                   credentialsId: "JFROG_ADMIN_ID"
+                )
+                rtMavenDeployer(
+                    id: "MAVEN_DEPLOYER",
+                    serverId: "JFROG_qtdevo",
+                    releaseRepo: "libs-release-local",
+                    snapshotRepo: "libs-snapshot-local"
+                )
+            }
+        }
     }
 }
