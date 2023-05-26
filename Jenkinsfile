@@ -33,6 +33,11 @@ pipeline {
                     releaseRepo: "libs-release-local",
                     snapshotRepo: "libs-snapshot-local"
                 )
+                rtBuildInfo (
+                 captureEnv: true
+                  maxBuilds: 5,
+                  deleteBuildArtifacts: true
+                )
             }
         }
     }
