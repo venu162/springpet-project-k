@@ -25,7 +25,7 @@ pipeline {
                rtServer(
                    id: "qtdevo",
                    url: "https://qtdevo.jfrog.io/",
-                   credentialsId: "JFROG_ADMIN_ID"
+                   credentialsId: "JFROG-qtdevo"
                 )
                 rtMavenDeployer(
                     id: "MAVEN_DEPLOYER",
