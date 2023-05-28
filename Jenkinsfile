@@ -20,19 +20,14 @@ pipeline {
               sh 'mvn package'
             }
         }
-        stage('artifactory-config'){
+        stage('SonarQube analysis') {
+           //    def scannerHome = tool 'SonarScanner 4.0';
             steps{
-               rtServer(
-                   id: "qtdevo",
-                   url: "https://qtdevo.jfrog.io/",
-                   credentialsId: "JFROG-qtdevo"
-                )
-                rtMavenDeployer(
-                    id: "MAVEN_DEPLOYER",
-                    serverId: "qtdevo",
-                    releaseRepo: "libs-release-local",
-                    snapshotRepo: "libs-snapshot-local"
-                )
+                withSonarQubeEnv('sonarqube-8.3'){
+                   // If you have configured more than one global server connection, you can specify its name
+                   //  sh "${scannerHome}/bin/sonar-scanner"
+                   sh "mvn sonar:sonar"
+                }
             }
         }
     }
