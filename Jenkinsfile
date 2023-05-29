@@ -13,11 +13,6 @@ pipeline {
                 echo "choice: ${params.BRANCH}"
             }
         }
-       stage('continuous-build'){
-            steps{
-              sh 'sudo apt install openjdk-17-jdk -y'
-            }
-        }
         stage('artifactory-config'){
             steps{
                rtMavenDeployer(
