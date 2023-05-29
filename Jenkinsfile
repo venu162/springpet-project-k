@@ -22,13 +22,8 @@ pipeline {
         }
         stage('artifactory-config'){
             steps{
-             rtServer(
-                   id: "qtdevo",
-                   url: "https://qtdevo.jfrog.io/",
-                   credentialsId: "JFROG-qtdevo"
-                )
                rtMavenDeployer(
-                 id: "MAVEN_DEPLOYER",
+                 id: "qtdevo",
                  serverId: "qtdevo",
                  releaseRepo: "libs-release-local",
                  snapshotRepo: "libs-snapshot-local"
