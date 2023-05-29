@@ -17,6 +17,7 @@ pipeline {
             steps{
               sh 'sudo apt install openjdk-17-jdk -y'
               sh 'sudo apt install maven -y'
+              sh 'sudo apt install maven -y'
             }
         }
         stage('artifactory-config'){
