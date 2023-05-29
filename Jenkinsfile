@@ -16,15 +16,13 @@ pipeline {
        stage('continuous-build'){
             steps{
               sh 'sudo apt install openjdk-17-jdk -y'
-              sh 'sudo apt install maven -y'
-              sh 'sudo apt install maven -y'
             }
         }
         stage('artifactory-config'){
             steps{
                rtMavenDeployer(
                  id: "qtdevo",
-                 serverId: "qt_maven",
+                 serverId: "qtdevo",
                  releaseRepo: "libs-release-local",
                  snapshotRepo: "libs-snapshot-local"
                 )
