@@ -17,18 +17,27 @@ pipeline {
             steps{
               sh 'sudo apt install openjdk-17-jdk -y'
               sh 'sudo apt install maven -y'
-              sh 'mvn package'
             }
         }
         stage('artifactory-config'){
             steps{
                rtMavenDeployer(
                  id: "qtdevo",
-                 serverId: "qtdevo",
+                 serverId: "qt_maven",
                  releaseRepo: "libs-release-local",
                  snapshotRepo: "libs-snapshot-local"
                 )
             }
-        }    
+        } 
+        stage ('Exec Maven') {
+            steps {
+                rtMavenRun (
+                    tool: "maven", // Tool name from Jenkins configuration
+                    pom: "pom.xml",
+                    goals: "package",
+                    deployerId: "qtdevo"
+                )
+            }
+        }   
     }
 }
